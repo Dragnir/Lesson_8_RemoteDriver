@@ -24,6 +24,7 @@ namespace Lesson_7_PageObject.WebDriver
                         var service = ChromeDriverService.CreateDefaultService();
                         var option = new ChromeOptions();
                         option.AddArgument("disable-infobars");
+                        option.AddArgument("no-sandbox");
                         driver = new ChromeDriver(service, option, TimeSpan.FromSeconds(timeOutSec));
                         break;
                     }
