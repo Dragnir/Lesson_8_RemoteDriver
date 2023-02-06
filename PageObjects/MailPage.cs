@@ -32,6 +32,7 @@ namespace Lesson_7_PageObject.PageObjects
         {
             _writeNewMail.Click();
             _addressField.SendKeys(address);
+            _subject.WebElementExist();
             _subject.SendKeys(subject);
             _body.SendKeys(body);
         }

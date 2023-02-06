@@ -56,8 +56,8 @@ namespace Lesson_7_PageObject.Tests
             _loginPage.SignIn();
             _mailPage = new MailPage();
             _mailPage.WriteNewMail("dragnir@tut.by", "TestSubject", "TestBody");
-            _mailPage._sendMail.Click();
-            _mailPage._sendFolder.Click();
+            _mailPage._sendMail.ActionClick();
+            _mailPage._sendFolder.ActionClick();
             Assert.IsTrue(_mailPage._savedMail.WebElementExist());
         }
     }

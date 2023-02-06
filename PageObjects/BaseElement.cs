@@ -1,5 +1,6 @@
 ﻿using Lesson_7_PageObject.WebDriver;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.ObjectModel;
@@ -64,12 +65,31 @@ namespace Lesson_7_PageObject.PageObjects
             Browser.GetDriver().FindElement(_locator).Click();
         }
 
+        public void ActionClick()
+        {
+            WaitForIsVisible();
+            new Actions(_driver).Click(this.GetWebElement()).Build().Perform();
+        }
+
+        public void ActionSendKeys(string text)
+        {
+            WaitForIsVisible();
+            new Actions(_driver).SendKeys(this.GetWebElement(), text).Build().Perform();
+        }
+
         public void JsClick()
         {
             this.WaitForIsVisible();
             IJavaScriptExecutor executor = (IJavaScriptExecutor)Browser.GetDriver();
             executor.ExecuteScript("arguments[0].click();", this.GetWebElement());
         }
+
+        public void JsHighlightElement()
+        {
+            IJavaScriptExecutor js = _driver as IJavaScriptExecutor;
+            js.ExecuteScript("arguments[0].style.backgroundColor = '" + "yellow" + "'", this.GetWebElement());
+        }
+
 
         public void SendKeys(string text)
         {
