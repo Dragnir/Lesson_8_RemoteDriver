@@ -46,16 +46,17 @@ namespace Lesson_7_PageObject.WebDriver
                 case BrowserType.remoteFirefox:
                     {
                         var option = new FirefoxOptions();
-                        //option.AddAdditionalFirefoxOption
-                        //option.BrowserExecutableLocation = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+                        option.BrowserExecutableLocation = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
                         option.AddArgument("--start-maximized");
                         option.AddArgument("disable-infobars");
-                        //option.PlatformName = "Windows 10";
-                        //option.BrowserVersion = "109.0.1";
-                        
-                        
+                        option.AddArguments("headless");
+                        option.SetPreference("security.sandbox.content.level", 5);
+                        option.AcceptInsecureCertificates = true;
+                        option.PlatformName = "Windows 10";
+                        option.BrowserVersion = "109.0.1";
+
                         option.SetPreference("intl.accept_languages", "locale-of-choice");
-                        driver = new RemoteWebDriver(new Uri("http://localhost:4444"), option.ToCapabilities(), TimeSpan.FromSeconds(timeOutSec));
+                        driver = new RemoteWebDriver(new Uri("http://192.168.100.3:4444"), option.ToCapabilities(), TimeSpan.FromSeconds(timeOutSec));
                         break;
                     }
                 case BrowserType.remoteChrome:
